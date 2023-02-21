@@ -4,7 +4,7 @@ import '../styles/components.css';
 const Card = ({ title, children, footer }) => {
   return (
     <div className="card">
-      <h1>{title}</h1>
+      <h1 className="titulo">{title}</h1>
       {children}
       <footer>
         {footer}

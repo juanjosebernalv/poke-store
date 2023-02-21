@@ -29,6 +29,12 @@ function App() {
             Hello Pikachu
           </p>
           <h2>Si</h2>
+
+          <div className="container">
+            <h2 style={{'backgroundColor':'black'}}>dd</h2>
+            <p>ddd</p>
+
+          </div>
         </Card>
       </section>
     </div>

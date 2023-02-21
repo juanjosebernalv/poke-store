@@ -1,12 +1,15 @@
 .card {
-  background-color: black;
-  border: aqua 25px solid;
-  color: antiquewhite;
-  height: 100vh;
+  background-color: yellow;
+  border: darkgoldenrod 10px solid;
+  color: rgb(116, 79, 0);
+  height: 90%;
   width: 100wh;
   border-radius: 30px;
-  padding: 50px 0px 20px 10px;
-  margin: 100px;
+  padding: 50px 10px 20px 10px;
+  margin: 80px 50px;
+}
 
+.titulo{
+  background-color: rgb(215, 178, 44);
 }
 
