@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Card from './components/Card';
 import { queryPokemon } from './utils/_api';
@@ -19,18 +18,18 @@ function App() {
 
   return (
     <div className="App">
-      {/* <header className="App-header">
-
-      </header> */}
-      <section>
-        <Card title="Component one" footer={<div>footer</div>}>
-          <img src={pokemon.sprites['front_default']} alt='poketest' />
-          <p>
-            Hello Pikachu
-          </p>
-          <h2>Si</h2>
-        </Card>
-      </section>
+      {pokemon && pokemon.sprites ?
+        <section>
+          <Card title="Component one" footer={<div>footer</div>}>
+            <img src={pokemon.sprites['front_default']} alt='poketest' />
+            <p>
+              Hello Pikachu
+            </p>
+            <h2>Si</h2>
+          </Card>
+        </section>
+        : <div>Loading...</div>
+      }
     </div>
   );
 }
