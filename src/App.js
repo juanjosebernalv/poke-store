@@ -8,12 +8,18 @@ function App() {
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    const loadPokemon = async () => {
-      const data = await queryPokemon('pikachu');
-      console.log(data);
-      setPokemon(data);
+    // const loadPokemon = async () => {
+    //   const data = await queryPokemon('pikachu');
+    //   console.log(data);
+    //   setPokemon(data);
+    // };
+    // loadPokemon();
+    const consultarPicachu = () => {
+      fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+        .then((response) => response.json())
+        .then((data) => setPokemon(data));
     };
-    loadPokemon();
+    consultarPicachu();
   }, []);
 
 
@@ -23,10 +29,10 @@ function App() {
 
       </header> */}
       <section>
-        <Card title="Component one" footer={<div>footer</div>}>
-          <img src={pokemon.sprites['front_default']} alt='poketest' />
+        <Card title={pokemon.name} footer={<div>footer</div>}>
+           <img src={pokemon.sprites['front_default']} alt='poketest' /> 
           <p>
-            Hello Pikachu
+            Hello {pokemon.name}
           </p>
           <h2>Si</h2>
 
