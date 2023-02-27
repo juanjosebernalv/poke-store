@@ -8,18 +8,18 @@ function App() {
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    // const loadPokemon = async () => {
-    //   const data = await queryPokemon('pikachu');
-    //   console.log(data);
-    //   setPokemon(data);
-    // };
-    // loadPokemon();
-    const consultarPicachu = () => {
-      fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
-        .then((response) => response.json())
-        .then((data) => setPokemon(data));
+    const loadPokemon = async () => {
+      const data = await queryPokemon('pikachu');
+      console.log(data);
+      setPokemon(data);
     };
-    consultarPicachu();
+    loadPokemon();
+    // const consultarPicachu = () => {
+    //   fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
+    //     .then((response) => response.json())
+    //     .then((data) => setPokemon(data));
+    // };
+    // consultarPicachu();
   }, []);
 
 
