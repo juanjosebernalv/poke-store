@@ -28,7 +28,7 @@ function App() {
             <h2>Si</h2>
           </Card>
         </section>
-        : <div>Loading...</div>
+        : <div>Loading... {console.log('pasó por aqui?')}</div>
       }
     </div>
   );
