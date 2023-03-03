@@ -24,15 +24,16 @@ function App() {
     Como parámetro entra UNA FUNCION FLECHA llamada función de efecto
     se ejecuta después de cada renderizado
     */
-    // const loadPokemon = async () => {
+     const loadPokemon = async () => {
          //-- async marca la fun flecha como ASINCRONA , lo que significa que
          //-- devuelve una promesa y no un valor.
-    //   const data = await queryPokemon('pikachu');
+       const data = await queryPokemon('pikachu');
          //-- await detiene la ejecución de la función hasta que se resuelva una promesa.
-    //   console.log(data);
-    //   setPokemon(data);
-    // };
-    // loadPokemon();
+       console.log('b. loadPokemon',data);
+       setPokemon(data);
+     };
+    loadPokemon(); //================================
+
 /* return () => {};  función de limpieza opcional despues de cada render
    se ejecuta antes de que se vuelva a ejecutar el efecto o justo antes de que se 
    desmonte el componente.
@@ -42,23 +43,22 @@ function App() {
 
     const consultarPicachu =  () => {
       const data =  queryPokemon('pikachu',setPokemon);
-      console.log('3. retornando data',data);
+      console.log('3. consultarPicachu retornando data',data);
       //A VER. then() resuelve promesas, lo mismo que AWAIT
       //    solo que then concatena y pasa por parámetro el resultado y vueeelve y llama algo que
       //    devuelve una promesa..
-      /*una promesa en JavaScript es un objeto que representa un valor que puede estar 
+      /*una promesa en JavaScript es un "objeto" que representa un valor que puede estar 
       disponible ahora, en el futuro o nunca. Se utiliza para manejar operaciones asíncronas
        y se puede encadenar con las funciones then() y catch() para procesar el resultado
         de la operación asíncrona.
       */
       //setPokemon(data);
 
-
       // fetch("https://pokeapi.co/api/v2/pokemon/pikachu")
       //   .then((response) => response.json())
       //   .then((data) => setPokemon(data));
     };
-    consultarPicachu();
+    //consultarPicachu();//================================
   }, []); /* Y UNA MATRIZ DE DEPENDENCIAAAS
      matriz opcional que contiene las dependencias para el efecto. 
      Si se proporciona una matriz vacía, el efecto se ejecutará solo una vez 
