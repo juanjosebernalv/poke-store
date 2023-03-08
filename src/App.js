@@ -5,7 +5,6 @@ import Card from './components/Card';
 import { useState, useEffect } from 'react';
 
 
-
 function App() {
   const [listaPokemon, setListaPokemon] = useState({});
 
