@@ -12,20 +12,24 @@ h1 {
   color: antiquewhite;
 }
 
-#parrafo{
+#parrafo {
   color: rgb(214, 187, 240) !important;
 }
 
-.titulo{
+.titulo {
   color: rgb(28, 3, 53);
 }
 
-section{
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
+section {
+  /* display: grid;
+  grid-template-columns: 30% 30% 30%; */
+  /* @apply flex flex-col md:flex-row; */
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
+  /* @apply bg-slate-600 md:bg-black lg:bg-blue-400;
+  @apply hover:bg-orange-400 cursor-pointer; */
 }
 
-img{
+img {
   width: 100%;
 }
 
