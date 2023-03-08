@@ -12,8 +12,9 @@
 }
 
 .titulo{
-  background-color: rgb(215, 178, 44);
+  background-color: hsla(47, 68.1%, 50.8%, 0.6);
   text-transform: uppercase;
+  margin: 10px 0;
 }
 
 .flotante{
