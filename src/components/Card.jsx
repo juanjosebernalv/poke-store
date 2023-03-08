@@ -1,11 +1,20 @@
-import React, { Children } from 'react';
+import React from 'react';
 import '../styles/components.css';
 
-const Card = ({ title, children, footer }) => {
+import { useSelector } from 'react-redux';
+
+const Card = ({ title, src, footer }) => {
+  const count = useSelector((state) => state.counter.other);
   return (
     <div className="card">
       <h1>{title}</h1>
-      {children}
+      <img src={src} alt={title} />
+      <p id="parrafo" className="titulo" style={{ 'color': 'yellow' }}>
+        Info del pokemon
+      </p>
+      <pre>
+        count {count}
+      </pre>
       <footer>
         {footer}
       </footer>
