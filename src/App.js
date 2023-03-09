@@ -4,10 +4,16 @@ import { queryListPokemon , queryPokemon} from './utils/_api.js';
 import Card from './components/Card';
 import { useState, useEffect } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from './counter/counterSlice';
+
 
 function App() {
   const [listaPokemon, setListaPokemon] = useState(undefined);
   const [listaPokemonDetalle, setListaPokemonDetalle] = useState(undefined);
+
+  const count = useSelector((state) => state.counter.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
      const loadListaPokemon = async () => {
@@ -41,6 +47,25 @@ function App() {
   return (
     <div className="App">
       {listaPokemonDetalle?
+
+        // <div>
+        //   <button
+        //     aria-label="Increment value"
+        //     onClick={() => dispatch(increment())}
+        //   >
+        //     Increment
+        //   </button>
+        //   <span>{count}</span>
+        //   <button
+        //     aria-label="Decrement value"
+        //     onClick={() => dispatch(decrement())}
+        //   >
+        //     Decrement
+        //   </button>
+        // </div>
+
+
+
       <section>
         {listaPokemonDetalle.map((pokeitem) => <Card pokeItem={pokeitem}></Card>)}
       </section>: 
