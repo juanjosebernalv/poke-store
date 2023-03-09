@@ -51,6 +51,10 @@ margin: 0 auto;
   opacity: 30%;
 }
 
+.slice{
+  margin: 10px 0px;
+}
+
 section {
   /* display: grid;
   grid-template-columns: 30% 30% 30%; */

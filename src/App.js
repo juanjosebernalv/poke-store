@@ -47,28 +47,31 @@ function App() {
   return (
     <div className="App">
       {listaPokemonDetalle?
+      <>
+        <div>
+          <button
+            aria-label="Increment value"
+            onClick={() => dispatch(increment())}
+          >
+            Increment
+          </button>
+          <span>{count}</span>
+          <button
+            aria-label="Decrement value"
+            onClick={() => dispatch(decrement())}
+          >
+            Decrement
+          </button>
+        </div>
 
-        // <div>
-        //   <button
-        //     aria-label="Increment value"
-        //     onClick={() => dispatch(increment())}
-        //   >
-        //     Increment
-        //   </button>
-        //   <span>{count}</span>
-        //   <button
-        //     aria-label="Decrement value"
-        //     onClick={() => dispatch(decrement())}
-        //   >
-        //     Decrement
-        //   </button>
-        // </div>
-
-
+      <hr className='slice'/>
 
       <section>
         {listaPokemonDetalle.map((pokeitem) => <Card pokeItem={pokeitem}></Card>)}
-      </section>: 
+      </section>
+      
+      </>   
+      : 
         <footer className="App-header">
         <p>
           CARGANDO <code>lista</code> DE POKEMONES
