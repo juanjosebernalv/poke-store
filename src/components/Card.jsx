@@ -1,31 +1,20 @@
 import React, { Children } from 'react';
 import { useState, useEffect } from 'react';
-
-import { queryPokemon } from '../utils/_api.js';
 import '../styles/components.css';
 
-const Card = ({ nombre, children }) => {
+
+const Card = ({ pokeItem, children }) => {
     const [pokemon, setPokemon] = useState(undefined);
     const [divStyle, setDivStyle] = useState({});
+
     useEffect(() => {
-        /*--->> INGREDIENTES
-        Como parámetro entra UNA FUNCION FLECHA llamada función de efecto
-        se ejecuta después de cada renderizado
-        */
-         const loadPokemon = async () => {
-             //-- async marca la fun flecha como ASINCRONA , lo que significa que
-             //-- devuelve una promesa y no un valor.
-           const data = await queryPokemon(nombre);
-             //-- await detiene la ejecución de la función hasta que se resuelva una promesa.
-           console.log(`Pokemon ${nombre}`,data);
-           console.log(`HABILIDADES..........`,data.abilities);
-           setPokemon(data);
-           //setDivStyle({'background-color': 'blue'});
-           setDivStyle({'background-image': `url(\"${data.sprites.other['official-artwork'].front_default}\")`});
-           ;
-         };
-        loadPokemon(); //================================
-      }, []);
+
+      if(!pokeItem)return;
+
+      setPokemon(pokeItem);
+      setDivStyle({'background-image': `url(\"${pokeItem.sprites.other['official-artwork'].front_default}\")`});
+
+  }, []);
 
 
   return (
@@ -53,11 +42,6 @@ const Card = ({ nombre, children }) => {
         </p>
       </footer>
       }
-
-
-
-
-
     </div>
   );
 };

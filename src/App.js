@@ -26,28 +26,23 @@ function App() {
 
     const loadPokemon = async (nombre) => {
         const data = await queryPokemon(nombre);
-        console.log(`3. CARGANDO --- Pokemon ${nombre}`,data);
+        console.log(`3. CARGANDO Pokemon --->> ${nombre}`,data);
         return data;
     };
 
-    //console.log("3.");
-    (async () => {
-      const listaTmp =  listaPokemon.results.map(async (pokeitem) =>{await loadPokemon(pokeitem.name);});
-      await Promise.all(listaTmp);
-      console.log("4. segundo useEffect --> DETALLE : ",listaTmp);
-      setListaPokemonDetalle(listaTmp);
-    })();
-    
-    
-
+    const listaTmp = listaPokemon.results.map(async (pokeitem) => await loadPokemon(pokeitem.name));
+    Promise.all(listaTmp).then((valores)=>{
+      console.log("4. RESOLVIENDO promesas --> DETALLE : ",valores);
+      setListaPokemonDetalle(valores);
+    });
      
   }, [listaPokemon]);
 
   return (
     <div className="App">
-      {listaPokemon?
+      {listaPokemonDetalle?
       <section>
-        {listaPokemon.results.map((pokeitem) => <Card nombre={pokeitem.name}></Card>)}
+        {listaPokemonDetalle.map((pokeitem) => <Card pokeItem={pokeitem}></Card>)}
       </section>: 
         <footer className="App-header">
         <p>
