@@ -1,32 +1,51 @@
 import './App.css';
 
-import { queryListPokemon } from './utils/_api.js';
+import { queryListPokemon , queryPokemon} from './utils/_api.js';
 import Card from './components/Card';
 import { useState, useEffect } from 'react';
 
 
 function App() {
-  const [listaPokemon, setListaPokemon] = useState({});
+  const [listaPokemon, setListaPokemon] = useState(undefined);
+  const [listaPokemonDetalle, setListaPokemonDetalle] = useState(undefined);
 
   useEffect(() => {
-    /*--->> INGREDIENTES
-    Como parámetro entra UNA FUNCION FLECHA llamada función de efecto
-    se ejecuta después de cada renderizado
-    */
      const loadListaPokemon = async () => {
-         //-- async marca la fun flecha como ASINCRONA , lo que significa que
-         //-- devuelve una promesa y no un valor.
        const data = await queryListPokemon();
-         //-- await detiene la ejecución de la función hasta que se resuelva una promesa.
-       console.log('Lista Pokemon RESULtS',data.results);
-       data && data.results && setListaPokemon(data);
+       console.log('1. primer useEffect --> listaPokemon: ',data);
+       setListaPokemon(data);
      };
-    loadListaPokemon(); //================================
+    loadListaPokemon(); 
   }, []);
+
+  useEffect( () => {
+    // -- segun entiendo, sólo corre cuando la "dependencia" esté lista
+    if(!listaPokemon)return;
+
+    console.log("2. segundo useEffect --> listaPokemon: ",listaPokemon);
+
+    const loadPokemon = async (nombre) => {
+        const data = await queryPokemon(nombre);
+        console.log(`3. CARGANDO --- Pokemon ${nombre}`,data);
+        return data;
+    };
+
+    //console.log("3.");
+    (async () => {
+      const listaTmp =  listaPokemon.results.map(async (pokeitem) =>{await loadPokemon(pokeitem.name);});
+      await Promise.all(listaTmp);
+      console.log("4. segundo useEffect --> DETALLE : ",listaTmp);
+      setListaPokemonDetalle(listaTmp);
+    })();
+    
+    
+
+     
+  }, [listaPokemon]);
 
   return (
     <div className="App">
-      {listaPokemon && listaPokemon.results?
+      {listaPokemon?
       <section>
         {listaPokemon.results.map((pokeitem) => <Card nombre={pokeitem.name}></Card>)}
       </section>: 

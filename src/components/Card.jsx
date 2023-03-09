@@ -5,7 +5,7 @@ import { queryPokemon } from '../utils/_api.js';
 import '../styles/components.css';
 
 const Card = ({ nombre, children }) => {
-    const [pokemon, setPokemon] = useState({});
+    const [pokemon, setPokemon] = useState(undefined);
     const [divStyle, setDivStyle] = useState({});
     useEffect(() => {
         /*--->> INGREDIENTES
@@ -18,6 +18,7 @@ const Card = ({ nombre, children }) => {
            const data = await queryPokemon(nombre);
              //-- await detiene la ejecución de la función hasta que se resuelva una promesa.
            console.log(`Pokemon ${nombre}`,data);
+           console.log(`HABILIDADES..........`,data.abilities);
            setPokemon(data);
            //setDivStyle({'background-color': 'blue'});
            setDivStyle({'background-image': `url(\"${data.sprites.other['official-artwork'].front_default}\")`});
@@ -26,9 +27,10 @@ const Card = ({ nombre, children }) => {
         loadPokemon(); //================================
       }, []);
 
+
   return (
     <div className="card">
-    { pokemon && pokemon.abilities && pokemon.sprites && pokemon.sprites.other?
+    { pokemon ?
       <>
           <div className="flotante, fondoFlotante" style={divStyle}></div>
           <div className="flotante">
