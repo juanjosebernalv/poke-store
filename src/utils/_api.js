@@ -1,5 +1,5 @@
-export const queryListPokemon = () => 
-  fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0`)
+export const queryListPokemon = (offset=0,limit=20) => 
+  fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${limit}&offset=${offset*limit}`)
     .then((response) => response.json())
     .then((data) => (data));
 ;

@@ -2,10 +2,14 @@ import React, { Children } from 'react';
 import { useState, useEffect } from 'react';
 import '../styles/components.css';
 
+import { useSelector } from 'react-redux';
+
 
 const Card = ({ pokeItem, children }) => {
     const [pokemon, setPokemon] = useState(undefined);
     const [divStyle, setDivStyle] = useState({});
+
+    const totalPokes = useSelector((state) => state.counter.totalResults);
 
     useEffect(() => {
 
@@ -14,7 +18,7 @@ const Card = ({ pokeItem, children }) => {
       setPokemon(pokeItem);
       setDivStyle({'background-image': `url(\"${pokeItem.sprites.other['official-artwork'].front_default}\")`});
 
-  }, []);
+    }, []);
 
 
   return (
@@ -27,13 +31,16 @@ const Card = ({ pokeItem, children }) => {
               <img src={pokemon.sprites['front_default']} title={pokemon.name} /> 
               <p>Habilidades:</p>
               <ul>{
-              pokemon.abilities.map(habil => <li>{habil.ability.name}</li>)
+                 pokemon.abilities.map(habil => <li>{habil.ability.name}</li>)
                 }
               </ul> 
               {children}
-              <footer>
+              {/* <footer>
                 {'aqui footer datos'}
-              </footer>
+                <pre>
+                total Pokes {totalPokes}
+                </pre>
+              </footer> */}
           </div>
       </>:
         <footer>
