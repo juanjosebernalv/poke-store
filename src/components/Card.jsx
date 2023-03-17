@@ -18,16 +18,21 @@ const Card = ({ pokeItem, children }) => {
       setPokemon(pokeItem);
       setDivStyle({'background-image': `url(\"${pokeItem.sprites.other['official-artwork'].front_default}\")`});
 
+
+
+      // 'background-image': 'linear-gradient(to bottom, yellow, #0000ff)'
+      //  {'background-image': `linear-gradient(to bottom, ${pokemon.color?pokemon.color:'yellow'}, white)`}
+
     }, []);
 
 
   return (
-    <div className="card">
+    <div className="card" style={{'background-image': `linear-gradient(to bottom, ${pokemon?pokemon.color:'yellow'}, white)`}}>
     { pokemon ?
       <>
           <div className="flotante, fondoFlotante" style={divStyle}></div>
           <div className="flotante">
-              <h1 className="titulo">{pokemon.name}</h1>
+              <h1 className="titulo">{pokemon.name}-{pokemon.color}</h1>
               <img src={pokemon.sprites['front_default']} title={pokemon.name} /> 
               <p>Habilidades:</p>
               <ul>{
